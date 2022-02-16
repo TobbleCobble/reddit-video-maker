@@ -23,17 +23,28 @@ def get_comments(submission):
     for top_level_comment in submission.comments:
         
         # make sure it's not a link and get top 5 comments
-        if "http" not in top_level_comment.body and length(comments) < 5:
+        if "http" not in top_level_comment.body and len(comments) < 5:
             comments.append(top_level_comment)
-        elif length(comments) >= 5:
+        elif len(comments) >= 5:
             break
 
     return comments
 
+def scrapeComments(subreddit, count, span):
+    posts = get_posts(subreddit, count, span)
 
-posts = get_posts("askreddit")
+    for post in posts:
+        comments=[post]
+        length = 0
+        # return as many comments that are under 1000 characters (~200 words)
+        for comment in get_comments(post):
+            length += len(comment.body)
+            if length > 1000:
+                break
+            else:
+                comments.append(comment)
 
-posts = get_posts("askreddit", 5, "day")
+    return comments
 
-for post in posts:
-    print(get_comments(post))
+if __name__ == "__main__":
+    scrapeComments("askreddit", 1, "day")
