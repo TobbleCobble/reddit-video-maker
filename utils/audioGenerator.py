@@ -20,10 +20,11 @@ def soundify(post):
             print(post[i].body)
             engine.save_to_file(post[i].body, "temp/temp"+str(i)+".mp3")
             engine.runAndWait()
-    
+'''   
 for voice in voices:
     print(voice, voice.id)
     engine.setProperty('voice', voice.id)
     engine.say("Hello World!")
     engine.runAndWait()
     engine.stop()
+'''
