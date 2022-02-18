@@ -3,7 +3,7 @@ from moviepy.video import *
 import os
 
 
-def createVideo(post):
+def createVideo(username):
     audioClip = []
     imageClip = []
     length = -0.5
@@ -19,7 +19,7 @@ def createVideo(post):
             audioClip.append(AudioFileClip("temp/"+files).set_start(length+0.5))
             length += AudioFileClip("temp/"+files).duration + 0.5
             startTimes.append(length)
-    print(startTimes)
+            
     i = 0
     for files in os.listdir("temp"):
 
@@ -44,7 +44,7 @@ def createVideo(post):
     videoClip = ColorClip((720,1280), (0,0,255), duration=videoAudio.duration)
     videoClip = CompositeVideoClip([videoClip] + imageClip)
     videoClip.audio = videoAudio
-    videoClip.write_videofile("temp/constructed.mp4", fps=30)
+    videoClip.write_videofile("exports/"+username+".mp4", fps=30)
 
     for files in os.listdir("temp"):
         if ".mp3" in files or ".png" in files: 

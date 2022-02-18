@@ -17,4 +17,4 @@ for i in range(len(post)):
         commentImage(post[i].author.name, post[i].body, i)
 
 soundify(post)
-createVideo(post)
+createVideo(post[0].author.name)
