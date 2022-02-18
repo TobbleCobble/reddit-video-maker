@@ -13,11 +13,9 @@ def soundify(post):
 
     for i in range(len(post)):
         if i == 0:
-            print(post[i].title)
             engine.save_to_file(post[i].title, "temp/temp"+str(i)+".mp3")
             engine.runAndWait()
         else:
-            print(post[i].body)
             engine.save_to_file(post[i].body, "temp/temp"+str(i)+".mp3")
             engine.runAndWait()
 '''   
