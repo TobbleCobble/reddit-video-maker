@@ -68,10 +68,10 @@ def titleImage(text, username, subreddit):
     d.text((80,35), username,fill=(200,200,200), align="left", font=userFont)
 
     img.paste(pfp,(5,5),mask)
-    img.save("temp/0_title.png")
+    img.save(username+"/0_title.png")
 
 
-def commentImage(username, text, num):
+def commentImage(username, text, num, sectionid, asker):
     lines = []
     length = 0
     nextSpace = 0
@@ -93,18 +93,22 @@ def commentImage(username, text, num):
     
     lines.append(text[length:len(text)])   
 
-    lines.insert(0, " ")
-    lines.insert(1, " ")
+    if sectionid == 0:
+        lines.insert(0, " ")
+        lines.insert(1, " ")
 
     text = ""
     for line in lines:
-        if line[0] == " ":
-            line = line[1:]
-    
-        text+= line + "\n"
+        try:
+            if line[0] == " ":
+                line = line[1:]
+
+            text += line + "\n"
+        except:
+            line[0] == " "
 
 
-    img = Image.new('RGB',(500,len(lines)*28+10),color=(30,30,30))
+    img = Image.new('RGB',(500,text.count("\n")*21+10),color=(30,30,30))
     d = ImageDraw.Draw(img)
 
     pfps = []
@@ -125,15 +129,19 @@ def commentImage(username, text, num):
 
     pfp = pfps[random.randrange(0,5)]
     
-    d.text((10,10), text,fill=(250,250,250), align="left", font=font)
+    if sectionid == 0:
+        d.text((10,10), text,fill=(250,250,250), align="left", font=font)
     
-    d.text((50,15), username,fill=(200,200,200), align="left", font=userFont)
+        d.text((50,15), username,fill=(200,200,200), align="left", font=userFont)
 
-    img.paste(pfp,(5,5),mask)
+        img.paste(pfp,(5,5),mask)
+    
+    else:
+        d.text((10,10), text,fill=(250,250,250), align="left", font=font)
 
-    img.save("temp/"+str(num)+"_"+username+'.png')
+    img.save(asker+"/"+str(num)+"_"+username+"_"+str(sectionid)+'.png')
 
 
 if __name__ == "__main__":
-    commentImage(username, text, 0)
+    commentImage(username, text, 0, 0)
     titleImage("what's 9 + 10??", "u/bogos", "r/binted")
