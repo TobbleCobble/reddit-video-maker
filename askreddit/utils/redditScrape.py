@@ -1,9 +1,9 @@
 import praw
 
 reddit = praw.Reddit(
-    client_id="cNd2mIIhZmzBcsAHeeHo9g",
-    client_secret="p68JnkeUTu68IeGavpvzR3OYsQ2O8Q",
-    user_agent="<AutoTubeBot-v0.1>"
+    client_id="",
+    client_secret="",
+    user_agent=""
 )
 
 def get_posts(sub, count, span):
