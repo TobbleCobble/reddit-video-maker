@@ -20,14 +20,14 @@ Install dependencies
 Change PRAW token information in redditScrape.py 
 
  - get all the stuff you need https://github.com/reddit-archive/reddit/wiki/OAuth2-Quick-Start-Example#first-steps
- - `reddit = praw.Reddit(
- 
+``` 
+    reddit = praw.Reddit(
     client_id="yourClientID",
- 
     client_secret="yourClientSecret",
-    
     user_agent="<yourUserAgent>"
-)`
+) 
+
+```
 
 (if you struggle with this step go here: https://praw.readthedocs.io/en/stable/getting_started/quick_start.html)
 
