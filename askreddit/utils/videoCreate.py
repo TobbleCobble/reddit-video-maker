@@ -1,5 +1,6 @@
 from moviepy.editor import *
 from moviepy.video import *
+import moviepy.editor as mpe
 import os
 import random
 import time
@@ -53,7 +54,9 @@ def createVideo(username):
     
     videoClip = backgroundClip
     videoClip = CompositeVideoClip([videoClip] + imageClip)
-    videoClip.audio = videoAudio
+    audio_background = mpe.AudioFileClip("music/"+os.listdir("music")[random.randrange(0,len(os.listdir("music")))])
+    final_audio = mpe.CompositeAudioClip([videoAudio, audio_background]).set_duration(backgroundClip.duration)
+    videoClip.audio = final_audio
     videoClip.write_videofile("exports/"+username+".mp4", fps=30)
 
     time.sleep(5)
