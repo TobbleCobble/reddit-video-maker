@@ -1,9 +1,9 @@
 import praw
 
 reddit = praw.Reddit (
-    client_id="q0utBTGEmInU7WPkz9hD_w",
-    client_secret="RzQ-Vry1x-ikh6gAm2NC7TgpkXFTGg",
-    user_agent="rayledyt"
+    client_id="",
+    client_secret="",
+    user_agent=""
 )
 
 def get_posts(sub, count, span):
