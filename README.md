@@ -18,7 +18,7 @@ Install dependencies
 
  - `pip3 install moviepy praw PIL pyttsx3`
 
-Change PRAW token information of redditScrape.py in both the `longForm/utils` and `askreddit/utils` folders
+Change the PRAW token information of redditScrape.py in both the `longForm/utils` and `askreddit/utils` folders
 
  - get all the stuff you need https://github.com/reddit-archive/reddit/wiki/OAuth2-Quick-Start-Example#first-steps
 ``` 
