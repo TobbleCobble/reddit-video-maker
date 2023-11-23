@@ -3,7 +3,7 @@ from utils.redditScrape import scrapeComments
 from utils.audioGenerator import soundifyAuthor, soundifyComment
 from utils.captionCreate import commentImage, titleImage
 from utils.videoCreate import createVideo
-
+import shutil
 import os
 import time
 
@@ -16,9 +16,12 @@ for i in range(1):
     #    os.remove("temp/"+file)
     
     postnum = i + 1
-    post = scrapeComments("askreddit", postnum, "week")
+    post = scrapeComments("askreddit", postnum, "day")
     print(post[0].author)
     asker = str(post[0].author)
+    if os.path.isdir(asker):
+        shutil.rmtree(asker)
+    subreddit = str(post[0].subreddit)
     os.makedirs(asker)
     for j in range(len(post)):
         
@@ -29,7 +32,6 @@ for i in range(1):
                 author = post[j].author.name
             except:
                 author = "[deleted]"
-        
         if j == 0:
             print(post[j].title)
             titleImage(post[j].title, author, "r/"+subreddit)
@@ -70,4 +72,3 @@ for i in range(1):
     else:
         author = post[0].author.name
     createVideo(author)
-    

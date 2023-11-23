@@ -1,5 +1,6 @@
 from moviepy.editor import *
 from moviepy.video import *
+import moviepy.editor as mpe
 import os
 import random
 import time
@@ -8,29 +9,29 @@ import time
 def createVideo(username):
     audioClip = []
     imageClip = []
-    length = 0.5
+    length = -0.5
 
     startTimes = [0]
 
-    #if os.path.exists("/exports/"+username+"/constructed.mp4"):
-    #    os.remove(username+"/constructed.mp4")
+    if os.path.exists(username+"/constructed.mp4"):
+        os.remove(username+"/constructed.mp4")
     
 
     for files in os.listdir(username+""):
         if ".mp3" in files: 
-            audioClip.append(AudioFileClip(username+"/"+files).set_start(length - 0.5))
-            length += AudioFileClip(username+"/"+files).duration - 0.5
-            startTimes.append(length - 0.5)
+            audioClip.append(AudioFileClip(username+"/"+files).set_start(length+0.5))
+            length += AudioFileClip(username+"/"+files).duration + 0.5
+            startTimes.append(length)
             
     i = 0
     for files in os.listdir(username+""):
 
         if ".png" in files:
-            clip = ImageClip(username+"/"+files,duration=audioClip[i].duration - 0.5).set_start(startTimes[i])
+            clip = ImageClip(username+"/"+files,duration=audioClip[i].duration).set_start(startTimes[i])
             
             (w,h) = clip.size
-            clip = clip.resize(newsize=(w*2,h*2))
-            (w,h) = (w*2,h*2)
+            clip = clip.resize(newsize=(w*1.5,h*1.5))
+            (w,h) = (w*1.5,h*1.5)
             clip = clip.set_position((540-w/2,960-h/2))
             clip = clip.set_opacity(0.9)
             imageClip.append(clip)
@@ -53,7 +54,9 @@ def createVideo(username):
     
     videoClip = backgroundClip
     videoClip = CompositeVideoClip([videoClip] + imageClip)
-    videoClip.audio = videoAudio
+    audio_background = mpe.AudioFileClip("music/"+os.listdir("music")[random.randrange(0,len(os.listdir("music")))])
+    final_audio = mpe.CompositeAudioClip([videoAudio, audio_background]).set_duration(backgroundClip.duration)
+    videoClip.audio = final_audio
     videoClip.write_videofile("exports/"+username+".mp4", fps=30)
 
     time.sleep(5)

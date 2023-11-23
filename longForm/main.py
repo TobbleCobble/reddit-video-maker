@@ -10,8 +10,8 @@ import shutil
 
 # Gets posts and top 5 comments from selected subreddit
 ### subreddit, number of posts, timeframe
-subreddit = "tifu"
-count = 5
+subreddit = "nosleep"
+count = 1
 
 
 post = scrapeComments(subreddit, count, "week")
