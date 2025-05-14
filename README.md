@@ -16,7 +16,7 @@ Open main directory
 
 Install dependencies
 
- - `pip3 install moviepy praw PIL pyttsx3`
+ - `pip3 install moviepy praw pillow pyttsx3`
 
 
 Create a new reddit application
