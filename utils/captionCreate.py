@@ -16,7 +16,6 @@ def titleImage(text, username, subreddit):
 
     para = textwrap.wrap(text, width=45)
 
-    
     para.insert(0, "      ")
     para.insert(0, "      ")
     para.insert(0, "      ")
@@ -48,7 +47,7 @@ def titleImage(text, username, subreddit):
     d.text((80,35), username,fill=(200,200,200), align="left", font=userFont)
 
     img.paste(pfp,(5,5),mask)
-    img.save(username+"/0_title.png")
+    img.save("temp/"+username+"/0_title.png")
 
 
 def commentImage(username, text, num, sectionid, asker):
@@ -94,7 +93,7 @@ def commentImage(username, text, num, sectionid, asker):
     else:
         d.text((10,10), text,fill=(250,250,250), align="left", font=font)
 
-    img.save(asker+"/"+str(num)+"_"+username+"_"+str(sectionid)+'.png')
+    img.save("temp/"+asker+"/"+str(num)+"_"+username+"_"+str(sectionid)+'.png')
 
 def textImage(username, text, num, sectionid):
     font = ImageFont.truetype("assets/fonts/helvetica.ttf", 20)
@@ -111,7 +110,7 @@ def textImage(username, text, num, sectionid):
     if len(sectionid) < 2:
         sectionid = "0" + sectionid
 
-    img.save(str(username)+"/"+str(num)+"_"+str(username)+"_"+str(sectionid)+'.png')
+    img.save("temp/"+str(username)+"/"+str(num)+"_"+str(username)+"_"+str(sectionid)+'.png')
 
 if __name__ == "__main__":
     commentImage(username, text, 0, 0, "steve")

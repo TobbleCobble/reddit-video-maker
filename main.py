@@ -21,32 +21,35 @@ span = input("enter time range (day/week): ")
 
 
 def long_form():
-    post = scrapeText(subreddit, count, "week")
-    for i in range(count):
-        print("Author: ", post[i][0].author)
+    posts = scrapeText(subreddit, count, "week")
 
-        if post[i][0].author is None:
+    for post in posts:
+        print("Author: ", post[0].author)
+
+        if post[0].author is None:
             author = "[deleted]"
         else:
-            author = str(post[i][0].author)
+            author = str(post[0].author)
 
         try:
-            shutil.rmtree(author)
+            shutil.rmtree("temp/"+author)
         except OSError:
             pass
 
-        os.makedirs(author)
+        os.makedirs("temp/"+author)
 
-        print(post[i][0].title)
-        titleImage(post[i][0].title, author, "r/"+subreddit)    
-        text = post[i][1]
+        print(post[0].title)
+        titleImage(post[0].title, author, "r/"+subreddit)    
+        text = post[1]
         sections = textwrap.wrap(text, width=400)
-
+        if len(text) > 5000:
+            print("[INFO]: length of post is too long")
+            continue
         for section in range(len(sections)):
             textImage(author, sections[section], 1, section+1)
             soundifyPost(sections[section], 1, section, author)
 
-        soundifyAuthor(post[i][0].title, author)
+        soundifyAuthor(post[0].title, author)
 
 
         createVideo(author)
@@ -58,16 +61,21 @@ def long_form():
 
 def askreddit():
     posts = scrapeComments("askreddit", count, span)
-    print(posts)
+    
     for post in posts:
         if post == None:
             quit()
-        print(post[0].author)
+
+        print("Author: ", post[0].author)
         asker = str(post[0].author)
-        if os.path.isdir(asker):
-            shutil.rmtree(asker)
+        
+        if os.path.isdir("temp/"+asker):
+            shutil.rmtree("temp/"+asker)
+        
         subreddit = str(post[0].subreddit)
-        os.makedirs(asker)
+        
+        os.makedirs("temp/"+asker)
+
         for j in range(len(post)):
             if post[j].author is None:
                 author = "[deleted]"
@@ -77,7 +85,7 @@ def askreddit():
                 except:
                     author = "[deleted]"
             if j == 0:
-                print(post[j].title)
+                print("Title: ", post[j].title)
                 titleImage(post[j].title, author, "r/"+subreddit)
             else:
                 text = post[j].body
