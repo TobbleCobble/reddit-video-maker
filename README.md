@@ -21,16 +21,18 @@ Install dependencies
 Change the PRAW token information of redditScrape.py in both the `longForm/utils` and `askreddit/utils` folders
 
  - get all the stuff you need https://github.com/reddit-archive/reddit/wiki/OAuth2-Quick-Start-Example#first-steps
+
+create `client_details.json` with the following:
 ``` 
 reddit = praw.Reddit (
     client_id="yourClientID",
     client_secret="yourClientSecret",
-    user_agent="<yourUserAgent>"
+    user_agent="yourUserAgent"
 ) 
 ```
 
 (if you struggle with this step go here: https://praw.readthedocs.io/en/stable/getting_started/quick_start.html)
 
-run main.py from either longform or askreddit while still in main directory
+run main.py
 
- - `python3 longForm/main.py` or `python3 askreddit/main.py`
+ - `python3 main.py`

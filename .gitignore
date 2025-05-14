@@ -130,4 +130,10 @@ dmypy.json
 .pyre/
 
 
-exports/
+exports/*
+bg_vids/*
+
+utils/__pycache__/
+*.pyc
+
+client_details.json
