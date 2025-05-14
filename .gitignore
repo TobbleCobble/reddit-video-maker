@@ -137,3 +137,5 @@ utils/__pycache__/
 *.pyc
 
 client_details.json
+
+goals.md

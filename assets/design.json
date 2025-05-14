@@ -1,0 +1,6 @@
+{
+    "colour": [30, 30, 30],
+    "background-colour": [250, 250, 250],
+    "font": "assets/fonts/helvetica.ttf",
+    "radius": 15
+}
