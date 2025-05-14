@@ -1,5 +1,5 @@
 import os
-import tkinter as tk
+#import tkinter as tk
 from utils.redditScrape import scrapeText, scrapeComments
 from utils.audioGenerator import soundifyAuthor, soundifyPost, soundifyComment
 from utils.captionCreate import titleImage, textImage, commentImage
@@ -9,7 +9,7 @@ import os
 import textwrap
 import shutil
 
-root = tk.Tk()
+#root = tk.Tk()
 
 subreddit = ""
 count = 1
