@@ -3,6 +3,8 @@ makes TikTok style videos based on reddit posts and comments automatically
 
 ## Setup:
 
+**THIS PROGRAM ONLY WORKS FOR PYTHON VERSION <=3.12**
+
 Download all files
 
 add background videos in mp4 or mov format to bg_vids
